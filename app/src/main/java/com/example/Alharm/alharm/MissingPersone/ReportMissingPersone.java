@@ -165,6 +165,7 @@ public class ReportMissingPersone extends AppCompatActivity implements View.OnCl
 
         @Override
         public void onProviderDisabled(String s) {
+            progressBar.dismiss();
             Toast.makeText(ReportMissingPersone.this, getString(R.string.request_enabled_location), Toast.LENGTH_SHORT).show();
         }
     };
