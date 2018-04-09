@@ -218,6 +218,8 @@ public class ReportMissingPersone extends AppCompatActivity implements View.OnCl
                             mReference.child("People").push()
                                     .setValue(new MissingPersonModel(personNameStr, imageP.toString(), myLocation.getLatitude(), myLocation.getLongitude(), state));
                             progressBar.dismiss();
+                            Toast.makeText(getBaseContext(), "تم الرفع", Toast.LENGTH_SHORT).show();
+                            resetFields();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -239,6 +241,14 @@ public class ReportMissingPersone extends AppCompatActivity implements View.OnCl
             Toast.makeText(this, getString(R.string.upload_image_warning), Toast.LENGTH_SHORT).show();
             return;
         }
+    }
+
+    private void resetFields() {
+
+        personImage.setImageDrawable(getDrawable(R.drawable.placeholder128));
+        imageUri =  null;
+        personName.setText("");
+
     }
 
     @Override
