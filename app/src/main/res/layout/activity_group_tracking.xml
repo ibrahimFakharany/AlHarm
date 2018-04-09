@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    tools:context="com.example.Alharm.alharm.NormalUser.Groups.groupTracking">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="10dp"
+        android:id="@+id/relativeLayout2">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/groupTracking"
+            android:textColor="@color/colorAccent"
+            android:gravity="center_horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="25sp"
+            />
+
+    </RelativeLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:hint="البحث عن مجموعة"
+        android:textColorHint="@color/colorPrimary"
+        android:drawableEnd="@drawable/search"
+        android:padding="15dp"
+        android:id="@+id/search"
+        android:drawablePadding="15dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@+id/relativeLayout2"
+        android:layout_alignParentStart="true" />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1.5dp"
+        android:layout_alignStart="@+id/search"
+        android:layout_alignEnd="@+id/search"
+        android:layout_below="@id/search"
+        android:layout_marginTop="2dp"
+        android:background="@color/colorPrimary"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:id="@+id/view3" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/view3"
+        android:layout_alignParentStart="true"
+        android:layout_margin="15dp"
+        android:background="@drawable/white_shape"
+        android:padding="17dp"
+        android:id="@+id/GroupsList"
+        android:divider="@android:color/transparent"
+        />
+</RelativeLayout>

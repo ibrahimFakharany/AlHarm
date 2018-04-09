@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?><!--layout file for method of search by name or photo-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_shap"
+    android:paddingBottom="5dp"
+    android:paddingEnd="5dp"
+    android:paddingStart="5dp"
+    android:paddingTop="5dp"
+    android:layoutDirection="rtl"
+    >
+
+    <TextView
+        android:id="@+id/title_search_by"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_search_by"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_search_by"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+        <Button
+            android:id="@+id/name_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/white_shape"
+            android:text="@string/name_button"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary" />
+
+
+        <Button
+            android:id="@+id/image_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/white_shape"
+            android:text="@string/image_button"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,35 @@
+<RelativeLayout
+            android:id="@+id/reportByImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="75dp"
+                android:src="@drawable/user" />
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="Press on the image icon to upload a picture"
+                android:textColor="@color/colorPrimary"
+                android:textSize="17sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1.5dp"
+                android:layout_alignLeft="@+id/tv2"
+                android:layout_alignRight="@+id/tv2"
+                android:layout_below="@id/tv2"
+                android:layout_marginTop="2dp"
+                android:background="@color/colorPrimary" />
+        </RelativeLayout>

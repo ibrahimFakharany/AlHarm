@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:layoutDirection="rtl"
+    tools:context="com.example.Alharm.alharm.NormalUser.MainPlaces.MainPlaces">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="15dp"
+        android:id="@+id/relativeLayout2">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/MainPlaces"
+            android:textSize="25sp"
+            android:textColor="@color/colorAccent"
+            android:gravity="center_horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/logo_img"
+        android:layout_width="150dp"
+        android:layout_height="120dp"
+        android:src="@drawable/logo"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/relativeLayout2"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/Makkah"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_shape"
+        android:gravity="center"
+        android:text="@string/Makkah"
+        android:textSize="25sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:onClick="makkahMainPlaces"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/missingPersonPage"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_shape"
+        android:gravity="center"
+        android:text="@string/Madina"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:onClick="madinaMainPlaces"
+        android:layout_below="@+id/Makkah"
+        android:layout_alignStart="@+id/Makkah"
+        android:layout_marginTop="32dp" />
+</RelativeLayout>

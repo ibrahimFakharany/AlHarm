@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:layoutDirection="rtl"
+    tools:context="com.example.Alharm.alharm.MissingPersone.ReportMissingPersone">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/app_bar"
+        android:paddingBottom="16dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp">
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:drawablePadding="15dp"
+            android:drawableStart="@drawable/usericon"
+            android:hint="الاسم"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textDirection="locale" />
+
+
+        <Button
+            android:id="@+id/upload_image"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/white_shape"
+            android:gravity="center"
+            android:text="@string/upload_image"
+            android:textColor="@color/colorPrimary" />
+
+        <Button
+            android:id="@+id/define_location"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/upload_image"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/white_shape"
+            android:text="@string/define_my_location"
+            android:textColor="@color/colorPrimary" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:layout_marginTop="10dp"
+            android:layout_above="@id/person_location"
+            android:layout_below="@+id/define_location">
+
+            <ImageView
+                android:id="@+id/person_image"
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+
+                android:scaleType="fitXY"
+                android:src="@drawable/placeholder128" />
+
+
+            <ImageButton
+                android:id="@+id/remove"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/cancel"
+                android:background="@null"/>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/person_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/report"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="@string/my_location"
+            android:textColor="#000"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/report"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/my_button_bg"
+            android:text="@string/report"
+            android:textSize="24sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
