@@ -12,13 +12,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Alharm.alharm.MissingPersone.Data.DatabaseContract;
@@ -31,7 +27,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,29 +40,14 @@ import static com.example.Alharm.alharm.MissingPersone.MissingPersonPage.FLAG_NA
 
 public class SearchResultFragment extends Fragment {
     private static final String TAG = "SearchResultFragment";
+    public static final String GALLARY_ID = "missingpeople";
+    private static Bitmap bitmap1;
+    public static Context context;
     RecyclerView recyclerView;
     Bundle bundle;
-
-    private static Bitmap bmp, yourSelectedImage, bmpimg1, bmpimg2;
-    private static ImageView iv1, iv2;
-    private static TextView tv;
-    private static String path1, path2;
-    private static String text;
-    private static Button start;
-    private static int imgNo = 0;
-    private static Uri selectedImage;
-    private static InputStream imageStream;
-    private static long startTime, endTime;
-    private static final int SELECT_PHOTO = 100;
-    private static String descriptorType;
-    private static int min_dist = 10;
-    private static int min_matches = 750;
-    private static Bitmap bitmap1, bitmap2;
-    static Context context;
     String imagePath;
     KairosListener listener = null;
     Kairos myKairos = null;
-    static final String GALLARY_ID = "missingpeople";
     ArrayList<MissingPersonModel> personsResultList = null;
     ProgressDialog progressBar;
 
@@ -78,9 +58,6 @@ public class SearchResultFragment extends Fragment {
         listener = new KairosListener() {
             @Override
             public void onSuccess(String s) {
-                Log.d(TAG, s);
-
-
                 JSONObject root;
                 try {
                     root = new JSONObject(s);
@@ -133,7 +110,6 @@ public class SearchResultFragment extends Fragment {
                         }
 
                     }
-                    Log.d(TAG, "last result size >> " + Double.toString(lastResult.size()));
                     progressBar.dismiss();
 
                     MissingPeopleAdapter adapter = new MissingPeopleAdapter(getActivity(), lastResult);
@@ -167,15 +143,6 @@ public class SearchResultFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         context = getActivity();
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.e("life", "onResume");
-
-
     }
 
     @Override
@@ -250,7 +217,6 @@ public class SearchResultFragment extends Fragment {
 
     private void handleSearchImage(String imagePath) {
         List<MissingPersonModel> list = new ArrayList<>();
-        Log.e("SearchResultFragment", "handle image search");
         // the main image is the image selected by the user (camera or gallary)
         Uri mainImage = Uri.parse(imagePath);
 
@@ -283,12 +249,12 @@ public class SearchResultFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
                 progressBar.dismiss();
-                Toast.makeText(getContext(), "error4", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "خطأ", Toast.LENGTH_SHORT).show();
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
                 progressBar.dismiss();
 
-                Toast.makeText(getContext(), "error5", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "خطأ", Toast.LENGTH_SHORT).show();
 
             }
 
@@ -299,16 +265,12 @@ public class SearchResultFragment extends Fragment {
 
     private List<MissingPersonModel> loadListOfImages(Cursor cursor) {
         List<MissingPersonModel> result = new ArrayList<>();
-
         if (cursor != null) {
             if (cursor.getCount() > 0) {
-
                 cursor.moveToFirst();
                 String name, image, firebaseId, phone;
                 double lat, lang = 0.0;
-
                 do {
-
                     name = cursor.getString(cursor.getColumnIndex(DatabaseContract.TableColumns.COLUMN_NAME));
                     image = cursor.getString(cursor.getColumnIndex(DatabaseContract.TableColumns.COLUMN_IMAGE));
                     firebaseId = cursor.getString(cursor.getColumnIndex(DatabaseContract.TableColumns.COLUMN_FIREBASE_ID));
@@ -319,15 +281,10 @@ public class SearchResultFragment extends Fragment {
                         result.add(new MissingPersonModel(firebaseId, name, image, lat, lang, phone));
                     else
                         result.add(new MissingPersonModel(firebaseId, name, image, lat, lang));
-
                 } while (cursor.moveToNext());
-
-
             }
-
         }
         return result;
-
     }
 
 

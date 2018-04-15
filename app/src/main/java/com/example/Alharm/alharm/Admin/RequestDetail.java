@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -50,7 +49,6 @@ public class RequestDetail extends AppCompatActivity implements View.OnClickList
         email.setText(user.getEmail());
         phone.setText(user.getPhone());
         userType.setText((user.getUserType().equals("Officer"))?"موظف": "مرشد");
-        Log.e("hema", user.getUserType());
 
         progressDialog = new ProgressDialog(this);
 

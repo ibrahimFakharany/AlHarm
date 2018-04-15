@@ -50,6 +50,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
 public class ConfirmFingerprint extends AppCompatActivity {
+    private static final String TAG = "ConfirmFingerprint";
     User user;
     String user_type;
     FirebaseAuth firebaseAuth;
@@ -282,7 +283,7 @@ public class ConfirmFingerprint extends AppCompatActivity {
             Task<Void> task = FirebaseDatabase.getInstance().getReference().getRoot().child(user.getUserType()).child(firebaseKey).removeValue();
             if (task != null) {
 
-                Log.e("hema", "successfull deleted");
+                Log.e(TAG, "successfull deleted");
 
             }
         }

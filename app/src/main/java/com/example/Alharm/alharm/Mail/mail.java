@@ -56,7 +56,7 @@ public class mail {
 				// ارسال رساله الى الإيميل 
                 Message message = new MimeMessage(session);
 				// source
-                message.setFrom(new InternetAddress("alharmapp@gmail.com"));
+                message.setFrom(new InternetAddress("almurshidapp@gmail.com"));
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(rec));
 				// العنوان
                 message.setSubject(subject);

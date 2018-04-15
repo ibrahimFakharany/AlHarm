@@ -156,17 +156,6 @@ public class LogInWithEmail extends AppCompatActivity {
 
     // عند استدعاء MainLogIn function
     private void logIn(final String email, final String pass) {
-       /* HashMap<String, User> map = getUser(email, pass);
-        if (map != null) {
-            Iterator<String> keys = map.keySet().iterator();
-
-            if (keys.hasNext()) {
-                Log.e("hema", "entered has next");
-                String key = keys.next();
-                User user = map.get(key);
-                if (user.getState().equals("authorized") || key.equals("admin")) {
-                    Log.e("hema", "entered authorized");
-*/
         progressDialog.setMessage("انتظر من فضلك ..");
         progressDialog.show();
 
@@ -217,27 +206,6 @@ public class LogInWithEmail extends AppCompatActivity {
                     }
                 });
 
-             /*   } else {
-                    Log.e("hema", "entered not authorized");
-
-                    // user not authorized
-                    // open code page
-                    Bundle bundle = new Bundle();
-                    bundle.putString("firebaseKey", key);
-                    bundle.putSerializable("user", user);
-                    Intent intent = new Intent(this, ConfirmCode.class);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-
-                }
-            }
-
-
-        } else {
-            // credentials not found
-            Toast.makeText(this, "خطأ فى البيانات", Toast.LENGTH_SHORT).show();
-        }*/
-
     }
 
     private User searchInDatabase(String email, String pass) {
@@ -264,46 +232,7 @@ public class LogInWithEmail extends AppCompatActivity {
         return null;
     }
 
-    /*private HashMap<String, User> getUser(String userEmail, String userPass) {
-        Log.e(TAG, "admin " + adminUser.getEmail() + " " + userEmail);
-        Log.e(TAG, "admin " + adminUser.getPassword() + " " + userPass);
 
-        HashMap<String, User> hashMap = new HashMap<>();
-        userEmail = "ahmed";
-
-//        String adminEmail= adminUser.getEmail();
-        String adminEmail = "admin";
-
-        String pass = adminUser.getPassword();
-        if (userEmail.equals(adminEmail)) {
-            if (userPass.equals(pass)) {
-                hashMap.put("admin", new User());
-                return hashMap;
-            } else Log.e(TAG, "pass not equal");
-
-        } else Log.e(TAG, "email not equal");
-        User user = null;
-        for (int i = 0; i < GuidesUsers.size(); i++) {
-            user = GuidesUsers.get(i);
-            if (userEmail.equals(user.getEmail()) && userPass.equals(user.getPassword())) {
-                hashMap.put(GuidesIDs.get(i), user);
-                return hashMap;
-            }
-        }
-
-        for (int i = 0; i < OfficersUsers.size(); i++) {
-
-            user = OfficersUsers.get(i);
-            if (userEmail.equals(user.getEmail()) && userPass.equals(user.getPassword())) {
-                hashMap.put(OfficersIDs.get(i), user);
-                return hashMap;
-
-            }
-        }
-
-
-        return null;
-    }*/
 
     private void openAdminPage() {
         Intent intent = new Intent(this, RequestsActivity.class);
