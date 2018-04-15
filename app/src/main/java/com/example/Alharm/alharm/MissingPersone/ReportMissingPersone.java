@@ -49,7 +49,7 @@ public class ReportMissingPersone extends AppCompatActivity implements View.OnCl
     private static final String TAG = "ReportMissingPersone";
 
     Button reportButton, uploadImageButton, defingLocationButton;
-    EditText personName;
+    EditText personName, personPhone;
     CustomBottomSheetDialog customBottomSheetDialog;
     String mCurrentPhotoPath;
     Uri contentUri;
@@ -80,6 +80,7 @@ public class ReportMissingPersone extends AppCompatActivity implements View.OnCl
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.report_missing_person));
         personName = (EditText) findViewById(R.id.name);
+        personPhone = findViewById(R.id.phone);
         reportButton = (Button) findViewById(R.id.report);
         reportButton.setOnClickListener(this);
         uploadImageButton = (Button) findViewById(R.id.upload_image);
@@ -87,7 +88,6 @@ public class ReportMissingPersone extends AppCompatActivity implements View.OnCl
         defingLocationButton = (Button) findViewById(R.id.define_location);
         defingLocationButton.setOnClickListener(this);
         mStorageRef = FirebaseStorage.getInstance().getReference();
-
         customBottomSheetDialog = new CustomBottomSheetDialog();
         customBottomSheetDialog.setListener(this);
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -216,8 +216,13 @@ public class ReportMissingPersone extends AppCompatActivity implements View.OnCl
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             imageP = taskSnapshot.getDownloadUrl();
+                            MissingPersonModel person = new MissingPersonModel(personNameStr, imageP.toString(), myLocation.getLatitude(), myLocation.getLongitude(), state);
+                            if(personPhone.getText().length()>0 ){
+
+                                person.setPhone(personPhone.getText().toString());
+                            }
                             mReference.child("People").push()
-                                    .setValue(new MissingPersonModel(personNameStr, imageP.toString(), myLocation.getLatitude(), myLocation.getLongitude(), state));
+                                    .setValue(person);
                             progressBar.dismiss();
                             Toast.makeText(getBaseContext(), "تم الرفع", Toast.LENGTH_SHORT).show();
                             resetFields();
@@ -249,6 +254,7 @@ public class ReportMissingPersone extends AppCompatActivity implements View.OnCl
         personImage.setImageDrawable(getDrawable(R.drawable.placeholder128));
         imageUri =  null;
         personName.setText("");
+        personPhone.setText("");
 
     }
 

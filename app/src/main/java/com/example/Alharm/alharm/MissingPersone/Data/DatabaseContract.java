@@ -21,6 +21,7 @@ public class DatabaseContract {
         public static final String COLUMN_LONG = "long";
         public static final String COLUMN_STATE = "state";
 
+        public static final String COLUMN_PHONE = "phone";
     }
 
     public static final String CONTENT_AUTHORITY = "com.example.Alharm.alharm.MissingPersone.Data";

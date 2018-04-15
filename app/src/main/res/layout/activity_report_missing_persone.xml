@@ -36,12 +36,26 @@
             android:textColorHint="@color/colorPrimary"
             android:textDirection="locale" />
 
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/name"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:drawablePadding="15dp"
+            android:drawableStart="@drawable/mobileicon"
+            android:hint="رقم الجوال"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textDirection="locale" />
 
         <Button
             android:id="@+id/upload_image"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/name"
+            android:layout_below="@id/phone"
             android:layout_marginTop="13dp"
             android:background="@drawable/white_shape"
             android:gravity="center"
@@ -63,16 +77,15 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="320dp"
-            android:layout_marginTop="10dp"
             android:layout_above="@id/person_location"
-            android:layout_below="@+id/define_location">
+            android:layout_below="@+id/define_location"
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:id="@+id/person_image"
                 android:layout_width="match_parent"
-                android:layout_height="320dp"
-
-                android:scaleType="fitXY"
+                android:layout_height="220dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/placeholder128" />
 
 
@@ -80,8 +93,8 @@
                 android:id="@+id/remove"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/cancel"
-                android:background="@null"/>
+                android:background="@null"
+                android:src="@drawable/cancel" />
         </FrameLayout>
 
         <TextView

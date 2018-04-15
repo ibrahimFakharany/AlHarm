@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.Alharm.alharm.authentication.LogIn.ConfirmCode">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:gravity="center"
+            android:text="@string/enter_confirmation_code"
+            android:id="@+id/text_code"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <EditText
+
+            android:layout_below="@id/text_code"
+            android:id="@+id/et_code"
+            android:layout_width="260dp"
+            android:layout_gravity="center"
+            android:ems="12"
+            android:inputType="number"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:textSize="24dp"
+            android:maxLength="4"
+            android:textColor="#000"
+            android:letterSpacing="@integer/letter_spacing"
+            android:background="@drawable/white_shape_square"
+            android:layout_height="50dp" />
+    </LinearLayout>
+    <!--android:letterSpacing="@integer/letter_spacing"-->
+
+
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/white_shape_square_filles"
+        android:text="@string/submit_text"
+        android:textSize="24sp" />
+</RelativeLayout>

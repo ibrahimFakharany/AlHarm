@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="16dp"
+    android:layoutDirection="rtl"
+    tools:context="com.example.Alharm.alharm.Admin.RequestDetail">
+    <RelativeLayout
+        android:id="@+id/relative_data"
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        android:layout_above="@+id/linear_buttons"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/name_text"
+            android:text="@string/name_text"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/name_request"
+            android:text="احمد محمد محمود"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+android:layout_marginTop="4dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/name_text"/>
+
+
+        <TextView
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/name_text"
+            android:text="@string/phone_text"
+            android:id="@+id/phone_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/name_text"
+            android:text="01127788472"
+            android:id="@+id/phone_request"
+            android:layout_toEndOf="@id/phone_text"
+            android:layout_marginStart="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/phone_text"
+            android:text="@string/email_text"
+            android:id="@+id/email_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/phone_request"
+            android:text="ibraheemelfakharany@hotmail.com"
+            android:id="@+id/email_request"
+            android:maxLines="1"
+            android:layout_toEndOf="@id/email_text"
+            android:layout_marginStart="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/email_text"
+            android:text="@string/request_type_text"
+            android:id="@+id/user_type_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/email_request"
+            android:text="موطف"
+            android:id="@+id/user_type_request"
+            android:layout_toEndOf="@id/user_type_text"
+            android:layout_marginStart="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+        <Button
+            android:id="@+id/show_document_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_type_request"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/white_shape_square"
+            android:gravity="center"
+            android:text="@string/show_document_button"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/colorPrimary" />
+
+        <ImageView
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/show_document_btn"
+            android:id="@+id/document_img"
+            android:layout_width="match_parent"
+            android:layout_height="260dp" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/linear_buttons"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="60dp">
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/accept_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/white_shape_square_start"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/accept_text"/>
+        <LinearLayout
+            android:background="@drawable/vertical_line"
+            android:layout_width="2dp"
+            android:layout_height="match_parent"/>
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/reject_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/white_shape_square_end"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/reject_text"/>
+
+    </LinearLayout>
+</RelativeLayout>

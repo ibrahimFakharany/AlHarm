@@ -23,18 +23,19 @@ import com.google.gson.Gson;
 
 public class Main_Page extends AppCompatActivity {
 
-    private String user_type=null;
+    private String user_type = null;
 
-    String isLoggedIn="false";
+    String isLoggedIn = "false";
     Button log_out_btn;
-    TextView name,phone;
+    TextView name, phone;
     protected static Gson mGson;
     protected static CustomSharedPreference mPref;
     private static User mUser;
     private static String userString;
 
     DrawerLayout drawerLayout;
-    Button reportMissingPerson,manageGroups , logIn;
+    Button reportMissingPerson, manageGroups, logIn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +43,10 @@ public class Main_Page extends AppCompatActivity {
 
         drawerLayout = (DrawerLayout) findViewById(R.id.design_drawer_layout);
 
-        log_out_btn=(Button)findViewById(R.id.log_out_btn);
+        log_out_btn = (Button) findViewById(R.id.log_out_btn);
 
-        name=(TextView)findViewById(R.id.name_drawer);
-        phone=(TextView)findViewById(R.id.phone_drawer);
+        name = (TextView) findViewById(R.id.name_drawer);
+        phone = (TextView) findViewById(R.id.phone_drawer);
 
 
         name.setText("سائح");
@@ -53,24 +54,24 @@ public class Main_Page extends AppCompatActivity {
 
         log_out_btn.setVisibility(View.GONE);
 
-        reportMissingPerson=(Button)findViewById(R.id.report_missing_person_bt);
-        manageGroups=(Button)findViewById(R.id.manageGroups);
+        reportMissingPerson = (Button) findViewById(R.id.report_missing_person_bt);
+        manageGroups = (Button) findViewById(R.id.manageGroups);
 
-        mGson = ((CustomApplication)getApplication()).getGsonObject();
-        mPref = ((CustomApplication)getApplication()).getShared();
+        mGson = ((CustomApplication) getApplication()).getGsonObject();
+        mPref = ((CustomApplication) getApplication()).getShared();
 
         // الحصول على بيانات المستخدم  من SharedPreference
         userString = mPref.getUserData();
         mUser = mGson.fromJson(userString, User.class);
 
-       // الحصول على نوع المستخدم من  SharedPreference
-        user_type=mPref.getUserType();
+        // الحصول على نوع المستخدم من  SharedPreference
+        user_type = mPref.getUserType();
 
         // الحصول على حالة تسجيل المستخدم من  SharedPreference
-        isLoggedIn=mPref.getUserLogInState();
-       // اذا كان المستخدم قام بتسجيل الدخول او قام بتسجيل حساب جديد
+        isLoggedIn = mPref.getUserLogInState();
+        // اذا كان المستخدم قام بتسجيل الدخول او قام بتسجيل حساب جديد
         if (isLoggedIn.equals("true")) {
-          // يتم اظهار الاسم ورقم الهاتف وزر تسجيل الخروج
+            // يتم اظهار الاسم ورقم الهاتف وزر تسجيل الخروج
             name.setVisibility(View.VISIBLE);
             phone.setVisibility(View.VISIBLE);
             log_out_btn.setVisibility(View.VISIBLE);
@@ -79,7 +80,7 @@ public class Main_Page extends AppCompatActivity {
             name.setText(mUser.getName());
             phone.setText(mUser.getPhone());
             // اذا كان المستخدم مرشد يتم اظهار زر ادارة الحملات
-            if (user_type.equals("Guide")){
+            if (user_type.equals("Guide")) {
                 reportMissingPerson.setVisibility(View.GONE);
             }
             // اذا كان المستخدم ضابط يتم اظهار زر التبليغ عن شخص مفقود
@@ -90,64 +91,65 @@ public class Main_Page extends AppCompatActivity {
 
     }
 
-    public void reportMissingPersone(View view){
+    public void reportMissingPersone(View view) {
         Intent intent;
-        if (isLoggedIn.equals("true")){
-          intent =new Intent(Main_Page.this,ReportMissingPersone.class);
-        }else
-        {
+        if (isLoggedIn.equals("true")) {
+            intent = new Intent(Main_Page.this, ReportMissingPersone.class);
+        } else {
             Toast.makeText(this, "يجب تسجيل الدخول اولا !", Toast.LENGTH_SHORT).show();
-            intent =new Intent(Main_Page.this,MainLogIn.class);
+            intent = new Intent(Main_Page.this, MainLogIn.class);
+            //intent =new Intent(Main_Page.this,UploadDocument.class);
+
         }
         startActivity(intent);
 
     }
 
-    public void MainPlaces(View view){
-        Intent intent =new Intent(Main_Page.this,MainPlaces.class);
+    public void MainPlaces(View view) {
+        Intent intent = new Intent(Main_Page.this, MainPlaces.class);
         startActivity(intent);
     }
 
-    public void missingPersonPage(View view){
-        Intent intent =new Intent(Main_Page.this,MissingPersonPage.class);
+    public void missingPersonPage(View view) {
+        Intent intent = new Intent(Main_Page.this, MissingPersonPage.class);
         startActivity(intent);
     }
+
     // الضغط على زر ادارة المجموعات
-    public void ManageGroups(View view){
+    public void ManageGroups(View view) {
         Intent intent;
-        if (isLoggedIn.equals("true")){
-            intent =new Intent(Main_Page.this,ManageGroups.class);
-        }else
-        {
+        if (isLoggedIn.equals("true")) {
+            intent = new Intent(Main_Page.this, ManageGroups.class);
+        } else {
             Toast.makeText(this, "يجب تسجيل الدخول اولا !", Toast.LENGTH_SHORT).show();
-            intent =new Intent(Main_Page.this,MainLogIn.class);
+            intent = new Intent(Main_Page.this, MainLogIn.class);
         }
         startActivity(intent);
     }
 
     // الضغط على زر تتبع الحملات
-    public void groupTracking(View view){
-       // الانتقال الى صفحة تتبع الحملات
-        Intent intent =new Intent(Main_Page.this,groupTracking.class);
+    public void groupTracking(View view) {
+        // الانتقال الى صفحة تتبع الحملات
+        Intent intent = new Intent(Main_Page.this, groupTracking.class);
         startActivity(intent);
     }
 
     // عند الضغط على زر تسجيل الخروج
-    public void logOut(View view){
+    public void logOut(View view) {
 
         // وضع قيمة حالة تسجيل المستخدم ب  false والانتقال الي الصفحة الرئيسية من جديد
-         mPref.setUserLogInState("false");
-        Intent intent =new Intent(Main_Page.this,Main_Page.class);
+        mPref.setUserLogInState("false");
+        Intent intent = new Intent(Main_Page.this, Main_Page.class);
         startActivity(intent);
         Main_Page.this.finish();
     }
 
-    public void contactUs(View view){
+    public void contactUs(View view) {
 
         Toast.makeText(this, "غير متوفرة !", Toast.LENGTH_SHORT).show();
     }
 
-    public void openDrawer(View view){
+    public void openDrawer(View view) {
         drawerLayout.openDrawer(Gravity.START);
     }
 }

@@ -95,7 +95,7 @@ public class SearchResultFragment extends Fragment {
                         JSONArray candidates = image.getJSONArray("candidates");
                         JSONObject candidate = null;
 
-                        for (int j = 0; j <candidates.length(); j++){
+                        for (int j = 0; j < candidates.length(); j++) {
                             candidate = candidates.getJSONObject(j);
                             confidence = candidate.getDouble("confidence");
                             subject_id = candidate.getString("subject_id");
@@ -106,25 +106,34 @@ public class SearchResultFragment extends Fragment {
                     }
                     Cursor cursor = getActivity().getContentResolver().query(DatabaseContract.CONTENT_URI, new String[]{DatabaseContract.TableColumns.COLUMN_NAME, DatabaseContract.TableColumns.COLUMN_IMAGE, DatabaseContract.TableColumns.COLUMN_FIREBASE_ID}, null, null, null);
 
-                    List<MissingPersonModel> datafromDB= loadListOfImages(cursor);
+                    List<MissingPersonModel> datafromDB = loadListOfImages(cursor);
                     ArrayList<MissingPersonModel> lastResult = new ArrayList<>();
-                    for (MissingPersonModel personModel: personsResultList){
+                    for (MissingPersonModel personModel : personsResultList) {
 
                         subject_id = personModel.getFirebaseKey();
                         confidence = personModel.getConfidence();
-                        for(MissingPersonModel personModelfromDB: datafromDB ){
+                        for (MissingPersonModel personModelfromDB : datafromDB) {
 
-                            if(personModelfromDB.getFirebaseKey().equals(subject_id)){
+                            if (personModelfromDB.getFirebaseKey().equals(subject_id)) {
+                                MissingPersonModel myPer = new MissingPersonModel(
+                                        subject_id,
+                                        personModelfromDB.getName(),
+                                        personModelfromDB.getImgUrl(),
+                                        confidence,
+                                        personModelfromDB.getLat(),
+                                        personModelfromDB.getLang());
 
-                                lastResult.add(new MissingPersonModel(subject_id,personModelfromDB.getName(),
-                                        personModelfromDB.getImgUrl(),confidence));
+                                if (personModelfromDB.getPhone() != null && personModelfromDB.getPhone().length() > 0)
+                                    myPer.setPhone(personModelfromDB.getPhone());
+
+                                lastResult.add(myPer);
 
                             }
 
                         }
 
                     }
-                    Log.d(TAG, "last result size >> "+Double.toString(lastResult.size()));
+                    Log.d(TAG, "last result size >> " + Double.toString(lastResult.size()));
                     progressBar.dismiss();
 
                     MissingPeopleAdapter adapter = new MissingPeopleAdapter(getActivity(), lastResult);
@@ -295,15 +304,21 @@ public class SearchResultFragment extends Fragment {
             if (cursor.getCount() > 0) {
 
                 cursor.moveToFirst();
-                String name, image;
-                String firebaseId;
+                String name, image, firebaseId, phone;
+                double lat, lang = 0.0;
 
                 do {
 
                     name = cursor.getString(cursor.getColumnIndex(DatabaseContract.TableColumns.COLUMN_NAME));
                     image = cursor.getString(cursor.getColumnIndex(DatabaseContract.TableColumns.COLUMN_IMAGE));
                     firebaseId = cursor.getString(cursor.getColumnIndex(DatabaseContract.TableColumns.COLUMN_FIREBASE_ID));
-                    result.add(new MissingPersonModel(firebaseId, name, image));
+                    lat = cursor.getDouble(cursor.getColumnIndex(DatabaseContract.TableColumns.COLUMN_LAT));
+                    lang = cursor.getDouble(cursor.getColumnIndex(DatabaseContract.TableColumns.COLUMN_LONG));
+                    phone = cursor.getString(cursor.getColumnIndex(DatabaseContract.TableColumns.COLUMN_PHONE));
+                    if (phone != null && phone.length() > 0)
+                        result.add(new MissingPersonModel(firebaseId, name, image, lat, lang, phone));
+                    else
+                        result.add(new MissingPersonModel(firebaseId, name, image, lat, lang));
 
                 } while (cursor.moveToNext());
 
@@ -314,9 +329,6 @@ public class SearchResultFragment extends Fragment {
         return result;
 
     }
-
-
-
 
 
 }

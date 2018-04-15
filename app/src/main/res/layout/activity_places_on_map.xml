@@ -146,8 +146,7 @@
             android:background="@drawable/white_shape"
             android:onClick="viewPath"
             android:text="عرض المسار"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorPrimary" />
 
-            />
     </LinearLayout>
 </RelativeLayout>

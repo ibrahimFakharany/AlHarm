@@ -10,6 +10,16 @@ public class MissingPersonModel {
     private double lat;
     private double lang;
     private int id;
+    private String phone;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     private String firebaseKey;
     private String state;
     private double confidence = -1;
@@ -32,7 +42,19 @@ public class MissingPersonModel {
 
     }
 
-    public MissingPersonModel(String firebaseKey, String name, String image, double confidence){
+    public MissingPersonModel(String firebaseKey, String name, String image, double lat, double lang, String phone){
+
+        this.firebaseKey = firebaseKey;
+        this.name = name;
+        this.imgUrl = image;
+        this.lat = lat;
+        this.lang = lang;
+        this.phone = phone;
+        this.confidence = -1;
+
+    }
+
+    public MissingPersonModel(String firebaseKey, String name, String image, double confidence, double lat, double lang){
 
         this.firebaseKey = firebaseKey;
         this.name = name;

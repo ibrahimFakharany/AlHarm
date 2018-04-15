@@ -9,4 +9,7 @@
     <color name="primary_dark_material_light">#f9f9f9</color>
     <color name="forground">#e1403f3f</color>
     <color name="forground2">#00403f3f</color>
+    <color name="indigo_400" >#5c6bc0</color>
+    <color name="orange_500" >#ff9800</color>
+
 </resources>

@@ -40,14 +40,13 @@ import java.util.HashMap;
 public class MissingPersonPageFragment extends Fragment {
     DatabaseReference ref = null;
     MissingPersonModel person = null;
-    ArrayList<MissingPersonModel> list;
     RecyclerView rvMissingPeople;
     KairosListener subjectListener;
     KairosListener addListener;
     Kairos mKairos = null;
     ProgressDialog progressBar;
     int counter1 = 0;
-
+    ArrayList<MissingPersonModel> list = null;
     public static String TAG = "MissingPersonPageFragment";
 
     @Nullable
@@ -63,10 +62,10 @@ public class MissingPersonPageFragment extends Fragment {
         rvMissingPeople = view.findViewById(R.id.rv_missing_people);
         rvMissingPeople.setLayoutManager(new LinearLayoutManager(getActivity()));
         ref = FirebaseDatabase.getInstance().getReference("People");
-        list = new ArrayList<>();
 
         String app_id = "acdba0d7";
         String api_key = "c9398669bf70e9d7327f7f951134ffa7";
+        list = new ArrayList<>();
         // each time entered this activity should update the database with new items
         // deleteAllDataIndb();
         progressBar = new ProgressDialog(getActivity(), R.style.Theme_MyDialog);
@@ -77,36 +76,6 @@ public class MissingPersonPageFragment extends Fragment {
         mKairos.setAuthentication(getActivity(), app_id, api_key);
 
         //get new items from firebase
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (!((Activity) getActivity()).isFinishing()) {
-
-                    progressBar.show();
-
-                }
-                Log.d(TAG, "onDataChange");
-                for (DataSnapshot personSnapshot : dataSnapshot.getChildren()) {
-                    HashMap map = (HashMap) personSnapshot.getValue();
-                    person = new MissingPersonModel(personSnapshot.getKey(), (String) map.get("name"), (String) map.get("imgUrl"), (Double) map.get("lat"), (Double) map.get("lang"));
-                    list.add(person);
-                }
-                if (list.size() != 0) {
-                    updateDB(list);
-                    updateKairos();
-                    MissingPeopleAdapter adapter = new MissingPeopleAdapter(getActivity(), list);
-                    rvMissingPeople.setAdapter(adapter);
-                }
-                else Toast.makeText(getActivity(), "list is null", Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                progressBar.dismiss();
-
-            }
-        });
 
 
         // listeners
@@ -158,14 +127,20 @@ public class MissingPersonPageFragment extends Fragment {
 
                     MissingPersonModel person = null;
                     int i = 0;
-                    for (i = 0; i < list.size(); i++) {
+                    for (; i < list.size(); i++) {
                         person = list.get(i);
 
 
                         try {
                             counter1++;
 
-                            mKairos.enroll(person.getImgUrl(), person.getFirebaseKey(), SearchResultFragment.GALLARY_ID, null, null, null, addListener);
+                            mKairos.enroll(person.getImgUrl(),
+                                    person.getFirebaseKey(),
+                                    SearchResultFragment.GALLARY_ID,
+                                    null,
+                                    null,
+                                    null,
+                                    addListener);
 
 
                         } catch (UnsupportedEncodingException ex) {
@@ -210,6 +185,56 @@ public class MissingPersonPageFragment extends Fragment {
                 Log.d(TAG, s);
             }
         };
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!((Activity) getActivity()).isFinishing()) {
+
+                    progressBar.show();
+
+                }
+                Log.d(TAG, "onDataChange");
+                list.clear();
+                for (DataSnapshot personSnapshot : dataSnapshot.getChildren()) {
+                    HashMap map = (HashMap) personSnapshot.getValue();
+                    person = new MissingPersonModel(
+                            personSnapshot.getKey(),
+                            (String) map.get("name"),
+                            (String) map.get("imgUrl"),
+                            (Double) map.get("lat"),
+                            (Double) map.get("lang"));
+                    if (map.get("phone") != null)
+                        person.setPhone((String) map.get("phone"));
+                    list.add(person);
+                }
+                if (list.size() != 0) {
+                    updateDB(list);
+                    updateKairos();
+                    MissingPeopleAdapter adapter = new MissingPeopleAdapter(getActivity(), list);
+                    rvMissingPeople.setAdapter(adapter);
+
+                } else {
+                    Toast.makeText(getActivity(), "لا يوجد اشخاص", Toast.LENGTH_SHORT).show();
+                    rvMissingPeople.removeAllViews();
+                    progressBar.dismiss();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                progressBar.dismiss();
+
+            }
+        });
 
     }
 
@@ -284,6 +309,8 @@ public class MissingPersonPageFragment extends Fragment {
                 contentValues.put(DatabaseContract.TableColumns.COLUMN_LAT, person.getLat());
                 contentValues.put(DatabaseContract.TableColumns.COLUMN_LONG, person.getLang());
                 contentValues.put(DatabaseContract.TableColumns.COLUMN_STATE, person.getState());
+                if (person.getPhone() != null && person.getPhone().length() > 0)
+                    contentValues.put(DatabaseContract.TableColumns.COLUMN_PHONE, person.getPhone());
                 getActivity().getApplicationContext().getContentResolver().insert(DatabaseContract.CONTENT_URI, contentValues);
 
             }

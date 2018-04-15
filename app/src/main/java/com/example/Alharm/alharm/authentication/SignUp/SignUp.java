@@ -17,8 +17,8 @@ import com.example.Alharm.alharm.R;
 import java.util.regex.Pattern;
 
 public class SignUp extends AppCompatActivity {
-RadioGroup user_type;
-    RadioButton Guide,Officer;
+    RadioGroup user_type;
+    RadioButton Guide, Officer;
 
     EditText userName, userEmail, userPhone, userPass;
 
@@ -27,7 +27,7 @@ RadioGroup user_type;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         Button next;
-        next=(Button)findViewById(R.id.next);
+        next = (Button) findViewById(R.id.next);
 
         next.setVisibility(View.VISIBLE);
 
@@ -37,15 +37,14 @@ RadioGroup user_type;
         userPhone = (EditText) findViewById(R.id.phone);
         userPass = (EditText) findViewById(R.id.password);
 
-        user_type=(RadioGroup)findViewById(R.id.user_type);
-        Guide=(RadioButton)findViewById(R.id.SignUpAsGuide);
-        Officer=(RadioButton)findViewById(R.id.SignUpAsOfficer);
-
+        user_type = (RadioGroup) findViewById(R.id.user_type);
+        Guide = (RadioButton) findViewById(R.id.SignUpAsGuide);
+        Officer = (RadioButton) findViewById(R.id.SignUpAsOfficer);
 
 
     }
 
-    public void next(View view){
+    public void next(View view) {
 
 // التحقق من ان المستخدم قام بادخال كل البيانات المطلوبه واظهار رسالة خطأ اذا كان المسنخدم لم يدخل احد البيانات
         boolean flag = true;
@@ -81,38 +80,39 @@ RadioGroup user_type;
             userPass.setFocusable(true);
             flag = false;
         }
-            if(!Guide.isChecked()&&!Officer.isChecked()){
-                flag=false;
-                Toast.makeText(this, "يجب اختيار نوع المستخدم", Toast.LENGTH_LONG).show();
-            }
+        if (!Guide.isChecked() && !Officer.isChecked()) {
+            flag = false;
+            Toast.makeText(this, "يجب اختيار نوع المستخدم", Toast.LENGTH_LONG).show();
+        }
 
         // اذا كانت كل البيانات صحيحة وقد تم ادخال كل البيانات المطلوبه
-        if (flag){
-            RadioButton tmp=(RadioButton)findViewById(user_type.getCheckedRadioButtonId());
-           // نضع البيانات التي قام المستخدم بادخالها داخل object من نوع User
-            User user=new User();
+        if (flag) {
+            RadioButton tmp = (RadioButton) findViewById(user_type.getCheckedRadioButtonId());
+            // نضع البيانات التي قام المستخدم بادخالها داخل object من نوع User
+            User user = new User();
             user.setName(userName.getText().toString());
             user.setPhone(userPhone.getText().toString());
             user.setEmail(userEmail.getText().toString());
             user.setPassword(userPass.getText().toString());
 
-         // الانقال الي صفحة تأكيد البصمة
-            Intent intent =new Intent(SignUp.this,ConfirmFingerprint.class);
+            // الانقال الي صفحة تأكيد البصمة
+            //Intent intent = new Intent(SignUp.this, ConfirmFingerprint.class);
+
+            Intent intent = new Intent(SignUp.this,UploadDocument.class);
             Bundle bundle = new Bundle();
-         // ارسال بيانات المستخدم الى الصفحة التالية
-            bundle.putSerializable("user Data",user);
-           // ارسال نوع المستخدم
-            String user_type=tmp.getText().toString();
-            if (user_type.equals("مرشد"))
-            bundle.putString("user type","Guide");
+            // ارسال بيانات المستخدم الى الصفحة التالية
+            bundle.putSerializable("user Data", user);
+            // ارسال نوع المستخدم
+            int user_typeId= tmp.getId();
+            if (user_typeId == R.id.SignUpAsGuide)
+                bundle.putString("user type", "Guide");
             else
-                bundle.putString("user type","Officer");
+                bundle.putString("user type", "Officer");
 
             intent.putExtras(bundle);
             startActivity(intent);
             SignUp.this.finish();
         }
-
 
 
     }

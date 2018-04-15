@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="16dp"
+    android:layout_marginTop="16dp"
+    tools:context="com.example.Alharm.alharm.MissingPersone.DetailActivity">
+
+    <ImageView
+        android:id="@+id/img_detail_person"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/name_detail_person"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_detail_person"
+        android:padding="16dp"
+        android:textColor="#000"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/phone_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_detail_person"
+        android:padding="16dp"
+        android:textColor="#000"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/found_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/get_route"
+        android:layout_below="@id/name"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/white_shape"
+        android:gravity="center"
+        android:text="@string/found"
+        android:textColor="@color/colorPrimary" />
+
+    <Button
+        android:id="@+id/get_route"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/name"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/white_shape"
+        android:gravity="center"
+        android:text="@string/get_route"
+        android:textColor="@color/colorPrimary" />
+
+</RelativeLayout>

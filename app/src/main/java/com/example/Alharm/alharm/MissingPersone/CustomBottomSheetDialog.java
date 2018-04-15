@@ -112,7 +112,7 @@ public class CustomBottomSheetDialog extends BottomSheetDialogFragment implement
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(getActivity(),
-                        "com.example.esmat.alharm.fileprovider",
+                        "com.example.Alharm.alharm.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 getActivity().startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);

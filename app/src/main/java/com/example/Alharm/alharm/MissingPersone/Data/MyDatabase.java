@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDatabase extends SQLiteOpenHelper {
     public static final String dbName = "missingpeopledb";
-    public static final int version = 3;
+    public static final int version = 4;
 
     private static final String CREATE_TABLE_MISSING_PEOPLE = " create table " + DatabaseContract.TableColumns.TABLE_NAME + " ( " +
             DatabaseContract.TableColumns._ID + " INTEGER PRIMARY KEY, " +
@@ -18,6 +18,7 @@ public class MyDatabase extends SQLiteOpenHelper {
             DatabaseContract.TableColumns.COLUMN_FIREBASE_ID+ " TEXT, " +
             DatabaseContract.TableColumns.COLUMN_IMAGE+ " TEXT, " +
             DatabaseContract.TableColumns.COLUMN_STATE+ " TEXT, " +
+            DatabaseContract.TableColumns.COLUMN_PHONE+ " TEXT, " +
             DatabaseContract.TableColumns.COLUMN_LAT+ " DOUBLE, " +
             DatabaseContract.TableColumns.COLUMN_LONG+ " DOUBLE) ";
 

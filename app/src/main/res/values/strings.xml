@@ -3,7 +3,7 @@
     <string name="action_settings">الاعدادات</string>
     <string name="section_format">مرحبا من سكشن</string>
     <string name="report_missing_person">التبليغ عن شخص مفقود</string>
-    <string name="missing_image" >اختر الوسيله</string>
+    <string name="missing_image">اختر الوسيله</string>
     <string name="upload_image_warning">من فضلك ادخل صورة </string>
     <string name="insert_name_warning">من فضلك ادخل اسم المفقود</string>
     <string name="insert_location_warning">من فضلك ادخل المكان</string>
@@ -43,4 +43,20 @@
     <string name="please_wait">انتظر من فضلك</string>
     <string name="get_location_failed">خطأ فى الحصول على العنوان</string>
     <string name="status_changed"> من فضلك أعد المحاوله</string>
+    <string name="get_route">عرض المسار</string>
+    <string name="found">وجد</string>
+    <string name="upload_document">ارفق التصريح</string>
+    <string name="submit_text">تاكيد</string>
+    <string name="choose_text">اختار</string>
+    <string name="email_person">الايميل</string>
+    <string name="name_text">الاسم</string>
+    <string name="accept_text">قبول</string>
+    <string name="reject_text">رفض</string>
+    <string name="phone_text">رقم التليفون</string>
+    <string name="email_text">البريد الالكترونى</string>
+    <string name="request_type_text">نوع المستخدم</string>
+    <string name="show_document_text">عرض التصريح</string>
+    <string name="show_document_button">اظهارالتصريح</string>
+    <string name="please_enter_code">من فضلك ادخل كود التأكيد</string>
+    <string name="enter_confirmation_code">من فضلك ادخل كود التاكيد</string>
 </resources>

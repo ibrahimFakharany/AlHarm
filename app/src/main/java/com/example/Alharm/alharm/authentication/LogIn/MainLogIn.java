@@ -22,24 +22,23 @@ public class MainLogIn extends AppCompatActivity {
 
     // عند الضغط على تسجيل الدخول بالبريد الالكتروني
     public void logInWithEmail(View view) {
-     startActivity(new Intent(MainLogIn.this,LogInWithEmail.class));
+        startActivity(new Intent(MainLogIn.this, LogInWithEmail.class));
         MainLogIn.this.finish();
 
     }
 
     // عند الضغط على تسجيل الدخول بالبصمة
     public void logInWithFingerPrint(View view) {
-        startActivity(new Intent(MainLogIn.this,LogInWithFingerPrint.class));
+        startActivity(new Intent(MainLogIn.this, LogInWithFingerPrint.class));
         MainLogIn.this.finish();
 
     }
 
 
-
     // عند الضغط على تسجيل حساب جديد
     public void signUp(View view) {
         Intent intent;
-        intent=new Intent(MainLogIn.this,SignUp.class);
+        intent = new Intent(MainLogIn.this, SignUp.class);
         startActivity(intent);
         MainLogIn.this.finish();
 
