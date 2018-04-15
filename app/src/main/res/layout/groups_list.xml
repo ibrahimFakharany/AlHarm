@@ -48,7 +48,7 @@
 
 
         <ImageView
-            android:id="@+id/delete"
+            android:id="@+id/info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -56,9 +56,9 @@
             android:layout_marginStart="20dp"
             android:onClick="deleteGroup"
             android:padding="7dp"
-            android:src="@drawable/delete" />
+            android:src="@drawable/info_24" />
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
             android:layout_marginStart="70dp"
             android:onClick="editGroup"
             android:padding="10dp"
-            android:src="@drawable/editicon" />
+            android:src="@drawable/editicon" />-->
 
         <View
             android:layout_width="match_parent"

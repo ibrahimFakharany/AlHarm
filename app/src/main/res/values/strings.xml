@@ -59,4 +59,6 @@
     <string name="show_document_button">اظهارالتصريح</string>
     <string name="please_enter_code">من فضلك ادخل كود التأكيد</string>
     <string name="enter_confirmation_code">من فضلك ادخل كود التاكيد</string>
+    <string name="edit_button_menu">تعديل</string>
+    <string name="delete_button_menu">حذف</string>
 </resources>

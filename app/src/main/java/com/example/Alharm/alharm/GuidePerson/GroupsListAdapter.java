@@ -2,7 +2,9 @@ package com.example.Alharm.alharm.GuidePerson;
 
 
 import android.content.Context;
+import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -52,32 +54,50 @@ public class GroupsListAdapter  extends BaseAdapter {
         name.setText(mName);
         phone.setText( mPhone);
 
-        ImageView delete=(ImageView) v.findViewById(R.id.delete);
-        ImageView edit=(ImageView) v.findViewById(R.id.edit);
+        /*ImageView delete=(ImageView) v.findViewById(R.id.delete);
+        ImageView edit=(ImageView) v.findViewById(R.id.edit);*/
+        final ImageView info=(ImageView) v.findViewById(R.id.info);
 
 
         // عند الضغط على صورة حزف المجموعة
-        delete.setOnClickListener(new View.OnClickListener() {
+        info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-// يتم استدعاء فنكشن حزف المجموعة من  ManageGroups Activity
-                if(context instanceof ManageGroups){
-                        ((ManageGroups)context).removeGroup( mName);
-                }
 
-
+                PopupMenu popup = new PopupMenu(context, info);
+                //Inflating the Popup using xml file
+                popup.getMenuInflater()
+                        .inflate(R.menu.group_button_menu, popup.getMenu());
+                //registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        int id = item.getItemId();
+                        switch (id){
+                            case R.id.edit:
+                                if(context instanceof ManageGroups){
+                                    ((ManageGroups)context).updateGroup(mName,Groups.get(i));
+                                }
+                            break;
+                            case R.id.delete:
+                                if(context instanceof ManageGroups){
+                                    ((ManageGroups)context).removeGroup( mName);
+                                }
+                                break;
+                        }
+                        return true;
+                    }
+                });
+                popup.show();
             }
         });
 
         // عند الضغط على صورة تعديل المجموعة
-        edit.setOnClickListener(new View.OnClickListener() {
+        /*edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(context instanceof ManageGroups){
-                    ((ManageGroups)context).updateGroup(mName,Groups.get(i));
-                }
+
             }
-        });
+        });*/
         return v;
 
     }

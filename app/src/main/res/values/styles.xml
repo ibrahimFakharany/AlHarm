@@ -4,6 +4,8 @@
         <item name="android:colorForeground">@color/foreground_material_light</item>
         <item name="android:textColorPrimary">@color/colorAccent</item>
         <item name="android:textColorSecondary">@color/ofWhite</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/popuptheme_large</item>
+        <item name="android:textAppearanceSmallPopupMenu">@style/popuptheme_small</item>
     </style>
 
     <style name="MyMaterialTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -21,5 +23,13 @@
         <item name="android:colorAccent">#000</item>
         <item name="android:textColor">#000</item>
         <item name="android:textColorPrimary">#000</item>
+    </style>
+
+
+    <style name="popuptheme_small" parent="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+    <style name="popuptheme_large" parent="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large">
+        <item name="android:textColor">@android:color/black</item>
     </style>
 </resources>
