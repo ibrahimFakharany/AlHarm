@@ -180,6 +180,21 @@ public class RequestDetail extends AppCompatActivity implements View.OnClickList
         storeUserData(userType,code);
     }
 
+    private void sendingMail(String name, String email,String number) {
+        mail mail = new mail();
+        // ونحضر الماسدج
+        String msg = "Hello "+ name +",\n" +
+                "\n" +
+                "Thank you for registering with Almurshid.\n" +
+                "you have been accpeted from admin\n" +
+                "To confirm your email, please try to login and write the confirmation number.\n\n" +
+                "your Confirmation number is " + number + " .\n" +
+                "Almurshid Team";
+        // وبعدين نعمل ارسال
+        mail.sendMail(email, "Confirmation Code from Almurshid", msg);
+        finish();
+    }
+
     //step3
     public void storeUserData(String user_type, String code){
         user.setCode(code);
@@ -188,21 +203,6 @@ public class RequestDetail extends AppCompatActivity implements View.OnClickList
         DatabaseReference Root = FirebaseDatabase.getInstance().getReference().getRoot();
         // انشاء key  جديد للمستخدم
         Root.child("Users").child(user_type).push().setValue(user);
-    }
-
-    private void sendingMail(String name, String email,String number) {
-        mail mail = new mail();
-        // ونحضر الماسدج
-        String msg = "Hello "+ name +",\n" +
-                "\n" +
-                "Thank you for registering with Almurshid.\n" +
-                "you have been accpeted from admin\n" +
-                "To confirm your email, please write the number when logging.\n" +
-                "The number is " + number + " .\n" +
-                "Almurshid Team";
-        // وبعدين نعمل ارسال
-        mail.sendMail(email, "Confirmation Code from Almurshid", msg);
-        finish();
     }
 
 
